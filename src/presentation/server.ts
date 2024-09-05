@@ -34,7 +34,7 @@ export class Server {
 
     this.app.use(
       cors({
-        origin: "http://localhost:5173",
+        origin: ["http://localhost:5173", "https://tecno-shop-seven.vercel.app"],
         credentials: true,
       })
     );

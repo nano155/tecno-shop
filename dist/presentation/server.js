@@ -25,7 +25,7 @@ class Server {
         //   this.swaggerOptions
         // );
         this.app.use((0, cors_1.default)({
-            origin: "http://localhost:5173",
+            origin: ["http://localhost:5173", "https://tecno-shop-seven.vercel.app"],
             credentials: true,
         }));
         // this.app.use("/apidocs", swaggerUiServe, swaggerUiSetup);
