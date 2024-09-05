@@ -16,6 +16,7 @@ class Server {
         this.port = options.port;
         this.public_path = options.public_path;
         this.routes = options.routes;
+        this.routeCors = options.routeCors;
         // this.swaggerOptions = options.swaggerOptions;
         this.configureMiddleware();
         this.configureRoutes();
@@ -25,7 +26,7 @@ class Server {
         //   this.swaggerOptions
         // );
         this.app.use((0, cors_1.default)({
-            origin: ["http://localhost:5173", "https://tecno-shop-seven.vercel.app"],
+            origin: this.routeCors,
             credentials: true,
         }));
         // this.app.use("/apidocs", swaggerUiServe, swaggerUiSetup);

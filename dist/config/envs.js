@@ -18,6 +18,7 @@ exports.envs = {
     CLOUDINARY_API_KEY: (0, env_var_1.get)("CLOUDINARY_API_KEY").required().asString(),
     CLOUDINARY_API_SECRET: (0, env_var_1.get)("CLOUDINARY_API_SECRET").required().asString(),
     STRIPE_APP_SECRET_KEY: (0, env_var_1.get)("STRIPE_APP_SECRET_KEY").required().asString(),
-    URL: (0, env_var_1.get)("URL").required().asString()
+    URL: (0, env_var_1.get)("URL").required().asString(),
+    ROUTE_CORS: (0, env_var_1.get)("ROUTE_CORS").required().asString()
 };
 //# sourceMappingURL=envs.js.map

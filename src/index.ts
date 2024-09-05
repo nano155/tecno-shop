@@ -25,9 +25,12 @@ async function main() {
           port:envs.PORT,
           public_path:path.join(__dirname, "../public"),
           routes:AppRoutes.routes,
+          routeCors:envs.ROUTE_CORS
         //   swaggerOptions:swaggerOptions
       })
 
+      console.log(envs.ROUTE_CORS);
+      
       try {
           await MongoConnect.start({mongo_url:envs.MONGO_URL, dbName:envs.DB_NAME}); // Primera llamada
         } catch (error) {

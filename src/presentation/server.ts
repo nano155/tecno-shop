@@ -8,6 +8,7 @@ interface Options {
   port: number;
   public_path: string;
   routes: Router;
+  routeCors: string;
 //   swaggerOptions: SwaggerOptions;
 }
 export class Server {
@@ -15,12 +16,14 @@ export class Server {
   public readonly port;
   public readonly routes;
   public readonly public_path;
+  public readonly routeCors;
 //   public readonly swaggerOptions;
 
   constructor(options: Options) {
     this.port = options.port;
     this.public_path = options.public_path;
     this.routes = options.routes;
+    this.routeCors = options.routeCors
     // this.swaggerOptions = options.swaggerOptions;
 
     this.configureMiddleware();
@@ -34,7 +37,7 @@ export class Server {
 
     this.app.use(
       cors({
-        origin: ["http://localhost:5173", "https://tecno-shop-seven.vercel.app"],
+        origin: this.routeCors,
         credentials: true,
       })
     );

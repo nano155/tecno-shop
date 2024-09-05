@@ -37,8 +37,10 @@ function main() {
             port: envs_1.envs.PORT,
             public_path: path_1.default.join(__dirname, "../public"),
             routes: routes_1.AppRoutes.routes,
+            routeCors: envs_1.envs.ROUTE_CORS
             //   swaggerOptions:swaggerOptions
         });
+        console.log(envs_1.envs.ROUTE_CORS);
         try {
             yield mongo_connect_1.MongoConnect.start({ mongo_url: envs_1.envs.MONGO_URL, dbName: envs_1.envs.DB_NAME }); // Primera llamada
         }
