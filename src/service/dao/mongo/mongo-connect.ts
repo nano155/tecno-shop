@@ -21,7 +21,7 @@ export class MongoConnect {
       await mongoose.connect(options.mongo_url, {
         dbName:options.dbName
       });
-      console.log("Conectado a mongoDB");
+      console.log(`Conectado a mongoDB ${options.dbName}`);
      
       MongoConnect.instance = new MongoConnect()
      

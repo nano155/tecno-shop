@@ -27,7 +27,7 @@ class MongoConnect {
                 yield mongoose_1.default.connect(options.mongo_url, {
                     dbName: options.dbName
                 });
-                console.log("Conectado a mongoDB");
+                console.log(`Conectado a mongoDB ${options.dbName}`);
                 MongoConnect.instance = new MongoConnect();
                 return MongoConnect.instance;
             }
