@@ -33,19 +33,23 @@ function main() {
         //       },
         //       apis:[`./src/docs/**/*.yml`]
         //   }
+        const port = Number(process.env.PORT) || envs_1.envs.PORT;
         const server = new server_1.Server({
-            port: envs_1.envs.PORT,
+            port,
             public_path: path_1.default.join(__dirname, "../public"),
             routes: routes_1.AppRoutes.routes,
-            routeCors: envs_1.envs.ROUTE_CORS
+            routeCors: envs_1.envs.ROUTE_CORS,
             //   swaggerOptions:swaggerOptions
         });
         console.log(envs_1.envs.ROUTE_CORS);
         try {
-            yield mongo_connect_1.MongoConnect.start({ mongo_url: envs_1.envs.MONGO_URL, dbName: envs_1.envs.DB_NAME }); // Primera llamada
+            yield mongo_connect_1.MongoConnect.start({
+                mongo_url: envs_1.envs.MONGO_URL,
+                dbName: envs_1.envs.DB_NAME,
+            }); // Primera llamada
         }
         catch (error) {
-            console.error('Error al conectar a MongoDB', error);
+            console.error("Error al conectar a MongoDB", error);
             return;
         }
         server.start();
