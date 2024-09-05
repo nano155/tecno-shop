@@ -17,5 +17,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./mongo-connect"), exports);
 __exportStar(require("./service/user.service"), exports);
 __exportStar(require("./service/cart.service"), exports);
-// export * from './service/product.service'
+__exportStar(require("./service/product.service"), exports);
 //# sourceMappingURL=index.js.map

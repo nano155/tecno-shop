@@ -120,94 +120,32 @@ export class UserService implements UserDatasource {
       }
     }
   }
-  // async loginUser(
-  //   loginDto: LoginUserDto
-  // ): Promise<{ userEntity: UserEntity; token: any }> {
-  //   try {
-  //     console.log(
-  //       "Iniciando el proceso de login, buscando usuario con email:",
-  //       loginDto.email
-  //     );
-
-  //     const userFind = await userModel.findOne({ email: loginDto.email });
-  //     if (!userFind) {
-  //       console.log("Usuario no encontrado, email:", loginDto.email);
-  //       throw CustomError.badRequest("Invalid credentials");
-  //     }
-
-  //     console.log('Usuario encontrado:', userFind);
-
-
-  //     const isMatch = BcryptAdapter.compare(
-  //       loginDto.password,
-  //       userFind.password
-  //     );
-
-  //     if (!isMatch) throw CustomError.badRequest("Invalid credentials");
-
-  //     const userEntity = UserEntity.fromObject({
-  //       id: userFind._id,
-  //       first_name: userFind.first_name,
-  //       last_name: userFind.last_name,
-  //       email: userFind.email,
-  //       validateEmail: userFind.emailValidate,
-  //       age: userFind.age,
-  //       password: userFind.password,
-  //       cart: userFind.cart._id.toString(),
-  //       role: userFind.role,
-  //     });
-
-  //     const token = await JwtAdapter.generateToken(userEntity);
-  //     if (!token)
-  //       throw CustomError.internalServer("Problem with generation token!");
-
-  //     if (userFind.emailValidate === false) {
-  //       await this.sendEmailValidationLink(userFind.email);
-  //     }
-
-  //     userFind.last_connection = loginDto.connection;
-  //     await userFind.save();
-
-  //     return {
-  //       userEntity,
-  //       token: token,
-  //     };
-  //   } catch (error) {
-  //     if (error instanceof CustomError) {
-  //       throw error;
-  //     } else {
-  //       throw CustomError.internalServer(`${error}`);
-  //     }
-  //   }
-  // }
-
+  
   async loginUser(
     loginDto: LoginUserDto
   ): Promise<{ userEntity: UserEntity; token: any }> {
     try {
-      // Agrega un log antes de buscar el usuario en la base de datos
-      console.log('Iniciando el proceso de login, buscando usuario con email:', loginDto.email);
-      
+      console.log(
+        "Iniciando el proceso de login, buscando usuario con email:",
+        loginDto.email
+      );
+
       const userFind = await userModel.findOne({ email: loginDto.email });
-      
       if (!userFind) {
-        console.log('Usuario no encontrado, email:', loginDto.email);
-        throw CustomError.badRequest('Invalid credentials');
+        console.log("Usuario no encontrado, email:", loginDto.email);
+        throw CustomError.badRequest("Invalid credentials");
       }
-  
+
       console.log('Usuario encontrado:', userFind);
-  
+
+
       const isMatch = BcryptAdapter.compare(
         loginDto.password,
         userFind.password
       );
-      
-      if (!isMatch) {
-        console.log('Las credenciales son incorrectas, password no coincide.');
-        throw CustomError.badRequest('Invalid credentials');
-      }
-  
-      // Log de creación del userEntity
+
+      if (!isMatch) throw CustomError.badRequest("Invalid credentials");
+
       const userEntity = UserEntity.fromObject({
         id: userFind._id,
         first_name: userFind.first_name,
@@ -219,33 +157,23 @@ export class UserService implements UserDatasource {
         cart: userFind.cart._id.toString(),
         role: userFind.role,
       });
-  
-      console.log('userEntity creado:', userEntity);
-  
+
       const token = await JwtAdapter.generateToken(userEntity);
-      if (!token) {
-        console.log('Error al generar el token para el usuario:', userEntity.email);
-        throw CustomError.internalServer('Problem with generation token!');
-      }
-  
-      console.log('Token generado correctamente:', token);
-  
+      if (!token)
+        throw CustomError.internalServer("Problem with generation token!");
+
       if (userFind.emailValidate === false) {
-        console.log('El email no está validado, enviando link de validación.');
         await this.sendEmailValidationLink(userFind.email);
       }
-  
+
       userFind.last_connection = loginDto.connection;
       await userFind.save();
-      
-      console.log('Última conexión actualizada para el usuario:', userFind.email);
-  
+
       return {
         userEntity,
         token: token,
       };
     } catch (error) {
-      console.log('Error capturado en loginUser:', error);
       if (error instanceof CustomError) {
         throw error;
       } else {
@@ -253,7 +181,8 @@ export class UserService implements UserDatasource {
       }
     }
   }
-  
+
+ 
 
   async registerUser(
     registerDto: RegisterUserDto

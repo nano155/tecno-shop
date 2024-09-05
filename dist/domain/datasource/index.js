@@ -15,7 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./user.datasource"), exports);
-// export * from './product.datasource'
+__exportStar(require("./product.datasource"), exports);
 __exportStar(require("./cart.datasource"), exports);
-// export * from './paymentStripe.datasource'
+__exportStar(require("./paymentStripe.datasource"), exports);
 //# sourceMappingURL=index.js.map

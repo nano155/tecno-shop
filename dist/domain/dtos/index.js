@@ -17,9 +17,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./users/RegisterUser.dto"), exports);
 __exportStar(require("./users/GetUser.dto"), exports);
 __exportStar(require("./users/LoginUser.dto"), exports);
-// export * from './products/create-product.dto'
-// export * from './products/update-products.dto'
-// export * from './shared/pagination.dto'
+__exportStar(require("./products/create-product.dto"), exports);
+__exportStar(require("./products/update-products.dto"), exports);
+__exportStar(require("./shared/pagination.dto"), exports);
 __exportStar(require("./cart/create-ticket.dto"), exports);
 __exportStar(require("./users/ChangePassword.dto"), exports);
 //# sourceMappingURL=index.js.map

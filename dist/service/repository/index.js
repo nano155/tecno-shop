@@ -16,5 +16,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./user.repositoryImpl"), exports);
 __exportStar(require("./cart.repositoryImpl"), exports);
-// export * from './product.repositoryImpl'
+__exportStar(require("./product.repositoryImpl"), exports);
 //# sourceMappingURL=index.js.map
