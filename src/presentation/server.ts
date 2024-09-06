@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import path from "path";
 
 interface Options {
-  port: number;
+  port: any;
   public_path: string;
   routes: Router;
   routeCors: string;
@@ -37,7 +37,7 @@ export class Server {
 
     this.app.use(
       cors({
-        origin: this.routeCors,
+        origin:this.routeCors,
         credentials: true,
       })
     );

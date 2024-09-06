@@ -33,7 +33,7 @@ function main() {
         //       },
         //       apis:[`./src/docs/**/*.yml`]
         //   }
-        const port = Number(process.env.PORT) || envs_1.envs.PORT || 8080;
+        const port = process.env.PORT || envs_1.envs.PORT;
         const server = new server_1.Server({
             port,
             public_path: path_1.default.join(__dirname, "../public"),
@@ -51,6 +51,7 @@ function main() {
             console.error("Error al conectar a MongoDB", error);
             return;
         }
+        console.log(port);
         server.start();
     });
 }

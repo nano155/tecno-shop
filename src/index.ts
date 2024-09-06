@@ -20,7 +20,7 @@ async function main() {
   //       },
   //       apis:[`./src/docs/**/*.yml`]
   //   }
-  const port = Number(process.env.PORT) || envs.PORT || 8080
+  const port =  process.env.PORT || envs.PORT
 
   const server = new Server({
     port,
@@ -41,5 +41,7 @@ async function main() {
     return;
   }
 
+  console.log(port);
+  
   server.start();
 }
