@@ -37,7 +37,7 @@ export class Server {
 
     this.app.use(
       cors({
-        origin:'http://localhost:5173',
+        origin:this.routeCors,
         credentials: true,
       })
     );

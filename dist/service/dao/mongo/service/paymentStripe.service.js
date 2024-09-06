@@ -28,13 +28,13 @@ class PaymentStripeService {
                 if (!userPayment) {
                     throw custom_error_1.CustomError.notFound('User not found!');
                 }
-                // Recuperar el PaymentIntent desde Stripe usando el ID almacenado
+                if (userPayment.payment_intentId === null) {
+                    throw custom_error_1.CustomError.notFound('userPayment not found!');
+                }
                 const paymentIntent = yield this.stripe.paymentIntents.retrieve(userPayment.payment_intentId);
                 return paymentIntent; // Aquí devuelves todo el objeto del PaymentIntent
             }
             catch (error) {
-                // Manejo de errores
-                console.error('Error fetching PaymentIntent:', error);
                 throw custom_error_1.CustomError.internalServer('Unable to fetch PaymentIntent');
             }
         });
