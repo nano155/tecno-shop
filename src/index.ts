@@ -20,7 +20,7 @@ async function main() {
   //       },
   //       apis:[`./src/docs/**/*.yml`]
   //   }
-  const port = Number(process.env.PORT) || envs.PORT
+  const port = Number(process.env.PORT) || envs.PORT || 8080
 
   const server = new Server({
     port,
@@ -30,7 +30,6 @@ async function main() {
     //   swaggerOptions:swaggerOptions
   });
 
-  console.log(envs.ROUTE_CORS);
 
   try {
     await MongoConnect.start({

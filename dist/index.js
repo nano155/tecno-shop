@@ -33,7 +33,7 @@ function main() {
         //       },
         //       apis:[`./src/docs/**/*.yml`]
         //   }
-        const port = Number(process.env.PORT) || envs_1.envs.PORT;
+        const port = Number(process.env.PORT) || envs_1.envs.PORT || 8080;
         const server = new server_1.Server({
             port,
             public_path: path_1.default.join(__dirname, "../public"),
@@ -41,7 +41,6 @@ function main() {
             routeCors: envs_1.envs.ROUTE_CORS,
             //   swaggerOptions:swaggerOptions
         });
-        console.log(envs_1.envs.ROUTE_CORS);
         try {
             yield mongo_connect_1.MongoConnect.start({
                 mongo_url: envs_1.envs.MONGO_URL,

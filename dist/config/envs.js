@@ -4,7 +4,7 @@ exports.envs = void 0;
 require("dotenv/config");
 const env_var_1 = require("env-var");
 exports.envs = {
-    PORT: (0, env_var_1.get)("PORT").required().asPortNumber(),
+    PORT: (0, env_var_1.get)("PORT").asPortNumber(),
     MONGO_URL: (0, env_var_1.get)("MONGO_URL").required().asString(),
     JWT_SEED: (0, env_var_1.get)("JWT_SEED").required().asString(),
     DB_NAME: (0, env_var_1.get)("DB_NAME").required().asString(),
