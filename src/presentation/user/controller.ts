@@ -24,7 +24,11 @@ export class AuthController {
     this.userRepository
       .loginUser(loginUserDto!)
       .then((user) => {
-        res.cookie("token", user.token);
+        res.cookie("token", user.token,{
+          httpOnly: true, 
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+        });
         return res.json(user);
       })
       .catch((error) => this.handleError(error, res));
@@ -70,8 +74,11 @@ export class AuthController {
 
     this.userRepository.loggoutUser(token)
     .then(user => {
-      res.cookie("token", "", {
-        expires: new Date(0),
+      res.cookie("token", "",  {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        expires: new Date(0), // Expira inmediatamente
       });
       return res.sendStatus(200)
     }
@@ -110,7 +117,7 @@ export class AuthController {
 
   public changePassword = (req: Request, res: Response) => {
     const [error, changePasswordDto] = ChangePasswordDto.create(req.body);
-    if (error) res.status(400).json({ error });
+    if (error) return res.status(400).json({ error });
     const { password, email } = changePasswordDto!;
 
     this.userRepository
