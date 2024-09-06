@@ -26,7 +26,9 @@ class Server {
         //   this.swaggerOptions
         // );
         this.app.use((0, cors_1.default)({
-            origin: this.routeCors,
+            origin: process.env.NODE_ENV === 'production'
+                ? process.env.ROUTE_CORS
+                : 'http://localhost:5173',
             credentials: true,
         }));
         // this.app.use("/apidocs", swaggerUiServe, swaggerUiSetup);
